@@ -1,7 +1,8 @@
 from rest_framework import generics, status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-                                                  from .models import User
+
+from .models import User
 from .serializers import (
     RegisterSerializer,
     ProfileSerializer,
@@ -15,7 +16,8 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
 
 
-class ProfileView(generics.RetrieveUpdateAPIView):    serializer_class = ProfileSerializer
+class ProfileView(generics.RetrieveUpdateAPIView):
+    serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
