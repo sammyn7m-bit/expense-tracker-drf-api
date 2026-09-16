@@ -25,4 +25,5 @@ urlpatterns = [
         "api/auth/",
         include("authentication.urls"),
     ),
+    path("api/expenses/", include('expenses.urls')),
 ]
