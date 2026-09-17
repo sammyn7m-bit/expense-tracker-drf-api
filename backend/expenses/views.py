@@ -1,9 +1,21 @@
 from django.shortcuts import render
-from .models import Expense
-from .serializers import ExpenseSerializer
+from .models import Expense, Category
+from .serializers import ExpenseSerializer, CategorySerializer
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
+
+#view all the categories
+class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated]
+
+# create a category
+class CategoryListCreateView(generics.ListCreateAPIView):
+    queryset = Category.objects.all().order_by("name")
+    serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated]
 
 # Create and view the expenses
 class ExpenseListCreateView(generics.ListCreateAPIView):
